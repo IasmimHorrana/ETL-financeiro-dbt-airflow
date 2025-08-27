@@ -10,8 +10,10 @@ token = os.getenv("BRAPI_TOKEN")
 ativos = ['PETR4', 'VALE3', 'ITUB4', 'BBDC4', 'WEGE3', 
           'MGLU3', 'ABEV3', 'JBSS32', 'BBAS3', 'BOVA11']
 
+# lista que vai armazenar os DataFrames temporários de cada ativo.
 dataframes = []
 
+# Define o cabeçalho HTTP com o token de autorização para a API.
 headers = {"Authorization": f"Bearer {token}"}
 
 for ativo in ativos:
@@ -29,7 +31,8 @@ for ativo in ativos:
 # # Concatenar todos os DataFrames
 df_final = pd.concat(dataframes, ignore_index=True)
 
-# Prevenir erros de colunas ausentes
+# Lista com os campos que eu gostaria de ter no CSV final.
+# Nem sempre a API retorna todos, por isso fazer esse filtro.
 campos_desejados = [
     "symbol",
     "shortName",
@@ -48,6 +51,8 @@ campos_desejados = [
     "earningsPerShare"
 ]
 
+# Cria uma lista apenas com as colunas que realmente existem no DataFrame 
+# (para evitar erro de "coluna não encontrada").
 colunas_existentes = [c for c in campos_desejados if c in df_final.columns]
 
 # Normalizar o timestamp porque "regularMarketTime" vem em string ISO

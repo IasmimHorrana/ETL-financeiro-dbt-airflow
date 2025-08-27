@@ -1,0 +1,29 @@
+name: 'b3_cotacao'
+version: '1.0.0'
+
+profile: 'b3_cotacao'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+vars:
+    "dbt_date:time_zone": "America/Sao_Paulo"
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  b3_cotacao:
+    staging:
+      +materialized: view
+    
+    intermediate:
+      +materialized: table
+    
+    mart:
+      +materialized: table
