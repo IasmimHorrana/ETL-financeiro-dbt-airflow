@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: brapi_raw
+    schema: brapi_raw
+    database: dbt_db
+    tables:
+      - name: cotacoes

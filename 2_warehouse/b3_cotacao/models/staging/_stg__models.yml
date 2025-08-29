@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: stg_cotacoes
+    description: "Modelo staging para a tabela de cotações"
+    columns:
+      - name: ticker
+        description: "Nome unico do ativo"
+        tests:
+          - unique
+          - not_null
+
+      - name: nome_curto_empresa
+        description: "Nome da empresa"
+      
+      - name: preco_atual
+        description: "Preço atual do ativo"
+        tests:
+          - not_null
+      
+      - name: preco_abertura
+        description: "Preço de abertura do dia"
+      
+      - name: preco_fechamento_anterior
+        description: "Preço do fechamento anterior"
+      
+      - name: preco_maximo_dia
+        description: "Preço maxima do dia"
+      
+      - name: preco_minimo_dia
+        description: "Preço minimo do dia"
+
+      - name: volume_negociado_dia
+        description: "Volume de negociação"
+        tests:
+          - not_null
+      
+      - name: variacao_diaria_valor
+        description: "Variação absoluta do preço no dia"
+
+      - name: variacao_diaria_percentual
+        description: "Variação em porcentagem"
+
+      - name: valor_de_mercado
+        description: "Valor de mercado do ativo"
+
+      - name: preco_lucro
+        description: "O preço que se paga por cada R$1 de lucro da empresa."
+      
+      - name: lucro_por_acao
+        description: "O valor do lucro líquido da empresa que corresponde a cada uma de suas ações."
+
+      - name: horario_cotacao
+        description: "Horario da cotação"
+
+      - name: data_coleta_etl
+        description: "Hora da coleta da ETL"
+        tests:
+          - not_null
