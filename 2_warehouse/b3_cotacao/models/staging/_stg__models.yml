@@ -10,7 +10,7 @@ models:
           - unique
           - not_null
 
-      - name: nome_curto_empresa
+      - name: nome_empresa
         description: "Nome da empresa"
       
       - name: preco_atual
